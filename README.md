@@ -6,15 +6,13 @@ i2cf is an application that uses a graph database to provide personalized recomm
 The application uses the item-to-item collaborative filtering technique to make recommendations. It works by analyzing the relationships between items and identifying items that are similar to each other.
 
 The project is built on a **graph database**, which makes it easy to model complex relationships between items and users. The database stores information about the items, such as their attributes and ratings, as well as information about the users, such as their preferences and behaviors.
-<!-- 
-Overall, this project is ideal for anyone who wants to build a recommendation engine that is flexible, scalable, and easy to use. It is designed to be highly customizable, and can be easily integrated into existing applications or used as a standalone recommendation engine. -->
 
 ## Import data to Neo4j
 
 1. Start Neo4j with docker-compose
 
 ```bash
-docker-compose up -d
+docker compose up -d neo4j
 ```
 
 2. Import csv to Neo4j
@@ -35,6 +33,8 @@ chown -R neo4j:neo4j /var/lib/neo4j/import
 Go to Neo4j browser at `http://localhost:7474/browser/` and the query in `utils/create_nodes_and_relationships.cypher` file.
 
 ## Run the application
+
+After importing data to Neo4j, you can run the application with docker-compose:
 
 ```bash
 docker-compose up -d
