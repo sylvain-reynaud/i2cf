@@ -37,5 +37,6 @@ Go to Neo4j browser at `http://localhost:7474/browser/` and the query in `utils/
 ## Run the application
 
 ```bash
-
+docker-compose up -d
+```
 

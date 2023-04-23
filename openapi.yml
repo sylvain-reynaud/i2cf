@@ -1,0 +1,64 @@
+openapi: 3.0.3
+info:
+  title: Recommender Systems OpenAPI
+  description: |-
+    This document contains the specification of recommender systems APIs.
+  contact:
+    email: hugo.amalric01@etu.umontpellier.fr
+  license:
+    name: MIT
+    url: https://opensource.org/license/mit/
+  version: 1.0.0
+paths:
+  /recommendations/{userId}:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        description: The identifier of the user to get recommendations
+        schema:
+          $ref: "#/components/schemas/UUID"
+      - in: query
+        name: limit
+        required: false
+        description: The number of recommendations to get
+        schema:
+          type: integer
+          default: 5
+          example: 10
+    get:
+      tags: [Video]
+      operationId: getRecommendedVideos
+      summary: Get a list of recommended videos for the given user
+      description: Get a list of recommended videos for the given user
+      responses:
+        200:
+          description: The list of the recommended videos for the given user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Video"
+        500:
+          description: An internal server error occurred. Check the logs for more details
+components:
+  schemas:
+    UUID:
+      type: string
+      example: "b53b71e0-2633-4a15-8435-8e6c56f66b9d"
+      description: The identifier of the resource
+
+    Video:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/UUID"
+        title:
+          description: The title of the video
+          type: string
+        score:
+          description: Number between 0 and 1 indicating the relevance or confidence of the recommendation
+          type: number
+          minimum: 0
+          maximum: 1
